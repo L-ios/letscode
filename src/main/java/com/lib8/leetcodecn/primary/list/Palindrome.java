@@ -15,7 +15,8 @@ import java.util.List;
 public class Palindrome {
 
     public boolean isPalindrome(ListNode head) {
-        throw new UnsupportedOperationException("need achieve");
+        // throw new UnsupportedOperationException("need achieve");
+        return space_O_1(head);
     }
 
     private boolean time_O_n(ListNode head) {
@@ -28,25 +29,34 @@ public class Palindrome {
      * @return
      */
     private boolean space_O_1(ListNode head) {
-        ListNode first = head;
-        while (head.next != null && head.val != head.next.val) {
-            head = head.next;
+        if (head == null || head.next == null) return true;
+        ListNode fast = head;
+        ListNode slow = head;
+        // 快慢指针将链表折半
+        // 1 2 3 4 5
+        // 1 2 3 4
+        while (fast.next != null) {
+            if (fast.next.next == null) {
+                break;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
         }
 
         // 此时 head 为 first的终止节点
-        ListNode second = reverseList(head.next);
-        head.next = null;
+        fast = reverseList(slow.next);
+        slow.next = null;
 
         // 比较两个链表
-        while (first != null && second != null) {
-            if (first.val != second.val) {
+        while (head != null && fast != null) {
+            if (head.val != fast.val) {
                 break;
             }
-            first = first.next;
-            second = second.next;
+            head = head.next;
+            fast = fast.next;
         }
 
-        return first == null && second == null;
+        return fast == null;
     }
 
     /**

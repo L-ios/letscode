@@ -22,8 +22,19 @@ class PalindromeTest {
     }
 
     @Test
-    void isPalindrome() {
+    void palindrome_one_node_return_true() {
         assertThat(isPalindrome(1)).isTrue();
+    }
+
+    @Test
+    void even_node_return_true() {
+        assertThat(isPalindrome(1, 2, 2, 1)).isTrue();
+    }
+
+    @Test
+    void odd_node_return_true() {
+        assertThat(isPalindrome(1, 2, 1)).isTrue();
+        assertThat(isPalindrome(1, 2, 2, 2, 2, 2, 1)).isTrue();
     }
 
     private boolean isPalindrome(int... nums) {
