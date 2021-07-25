@@ -7,8 +7,8 @@ package com.lib8.leetcodecn.primary.list;
  * @create: 2021/2/5
  */
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
     ListNode() {
     }
