@@ -9,10 +9,8 @@ package com.lib8.structure;
 public class ListStack implements Stack{
 
     private Node head;
-    private Node tail;
     public ListStack() {
         head = null;
-        tail = head;
     }
 
     @Override
@@ -24,23 +22,17 @@ public class ListStack implements Stack{
 
     @Override
     public int pop() {
-        if (isEmpty() || tail == null) {
+        if (isEmpty()) {
             throw new IllegalArgumentException();
         }
-        int result = tail.val;
-        Node node = tail;
-        node.next = null;
-        tail = tail.next;
-        if (isEmpty()) { // 其实这里可以
-            head = null;
-            tail = null;
-        }
-        return result;
+        Node node = head;
+        head = head.next;
+        return node.val;
     }
 
     @Override
     public boolean isEmpty() {
-        return head == tail;
+        return head == null;
     }
 
     @Override
