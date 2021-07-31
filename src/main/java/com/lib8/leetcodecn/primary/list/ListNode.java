@@ -9,8 +9,8 @@ import java.util.*;
  * @create: 2021/2/5
  */
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
     ListNode() {
     }
