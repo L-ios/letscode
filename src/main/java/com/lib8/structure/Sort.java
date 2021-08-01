@@ -103,5 +103,22 @@ public class Sort {
         }
     }
 
+    public void mergeSort(int[] nums) {
+
+    }
+
+    private void mergeSort(int[] nums, int start, int end) {
+        if (start <= end) {
+            return ;
+        }
+        int middle = start + (end - start) / 2 ; // 不写成 （start + end) / 2是为了防止整数溢出
+        mergeSort(nums, start, middle);
+        mergeSort(nums, middle + 1, end);
+        merge();
+    }
+
+    private void merge() {
+
+    }
 
 }
