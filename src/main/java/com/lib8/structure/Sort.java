@@ -104,21 +104,39 @@ public class Sort {
     }
 
     public void mergeSort(int[] nums) {
-
+        mergeSort(nums, 0, nums.length-1);
     }
 
     private void mergeSort(int[] nums, int start, int end) {
-        if (start <= end) {
+        if (start >= end) {
             return ;
         }
         int middle = start + (end - start) / 2 ; // 不写成 （start + end) / 2是为了防止整数溢出
         mergeSort(nums, start, middle);
         mergeSort(nums, middle + 1, end);
-        merge();
+        merge(nums, start, middle+1, end);
     }
 
-    private void merge() {
-
+    private void merge(int[] nums, int lPos, int rPos, int rEnd) {
+        int[] temp = new int[rEnd-lPos+1]; // 防止内存溢出
+        int tempIndex = 0;
+        int lEnd = rPos -1;
+        while (lPos <= lEnd && rPos <= rEnd) {
+            if (nums[lPos] <= nums[rPos]) {
+                temp[tempIndex++] = nums[lPos++];
+            } else {
+                temp[tempIndex++] = nums[rPos++];
+            }
+        }
+        while (lPos <= lEnd) {
+            temp[tempIndex++] = nums[lPos++];
+        }
+        while (rPos <= rEnd) {
+            temp[tempIndex++] = nums[rPos++];
+        }
+        for (tempIndex--; tempIndex >= 0; tempIndex--, rEnd--) {  // 需要先减一就
+            nums[rEnd] = temp[tempIndex];
+        }
     }
 
 }
