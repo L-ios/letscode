@@ -139,4 +139,35 @@ public class Sort {
         }
     }
 
+
+    public void quickSort(int[] nums) {
+        quickSort(nums, 0, nums.length-1);
+    }
+
+    public void quickSort(int[] nums, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+
+        int pivotIndex = partition(nums, start, end);
+        quickSort(nums, start, pivotIndex-1);
+        quickSort(nums, pivotIndex+1, end);
+    }
+
+    public int partition(int[] nums, int start, int end) {
+        int pivot = nums[end];
+        int i = start;
+        for (int j = i; j < end; j++) { // 重点：走到end前一个点
+            if (nums[j] < pivot) {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                i++;
+            }
+        }
+        int temp = nums[i];
+        nums[i] = nums[end];
+        nums[end] = temp;
+        return i;
+    }
 }

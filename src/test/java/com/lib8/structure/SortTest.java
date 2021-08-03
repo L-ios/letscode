@@ -32,4 +32,11 @@ public class SortTest {
         new Sort().mergeSort(nums);
         System.out.println(Arrays.toString(nums));
     }
+
+    @Test
+    public void quickSort() {
+        int[] nums = new int[] {4, 5, 6, 1, 3, 2};
+        new Sort().quickSort(nums);
+        System.out.println(Arrays.toString(nums));
+    }
 }
