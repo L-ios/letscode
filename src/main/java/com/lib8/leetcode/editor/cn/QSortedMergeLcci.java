@@ -31,45 +31,46 @@ public class QSortedMergeLcci {
         Solution solution = new Solution();
     }
 
-    public static void  merge(int[] A, int m, int[] B, int n) {
+    public static void merge(int[] A, int m, int[] B, int n) {
         new Solution().merge(A, m, B, n);
     }
-}
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    /**
-     * 使用插入排序算法的思路
-     */
-    public void merge2(int[] A, int m, int[] B, int n) {
-        for (int i = 0; i < B.length; i++, m++) {
-            int j = m;
-            for (; j > 0 && A[j-1] > B[i]; j--) {
-                A[j] = A[j-1];
-                A[j-1] = B[i];
-            }
-            A[j] = B[i];
-        }
-    }
 
-    /**
-     * 使用快慢指针的方式
-     */
-    public void merge(int[] A, int m, int[] B, int n) {
-        int p = A.length-1;
-        m--;
-        n--;
-        while (m >= 0 && n >= 0) {
-            if (A[m] > B[n]) {
-                A[p] = A[m--];
-            } else {
-                A[p] = B[n--];
+    //leetcode submit region begin(Prohibit modification and deletion)
+    private static class Solution {
+        /**
+         * 使用插入排序算法的思路
+         */
+        public void merge2(int[] A, int m, int[] B, int n) {
+            for (int i = 0; i < B.length; i++, m++) {
+                int j = m;
+                for (; j > 0 && A[j - 1] > B[i]; j--) {
+                    A[j] = A[j - 1];
+                    A[j - 1] = B[i];
+                }
+                A[j] = B[i];
             }
-            p--;
         }
-        // 如果 m > 0 则 A 中剩余的数都比B小
-        while (n >= 0) { // A 中的有效数都已向后移动
-            A[p--] = B[n--];
+
+        /**
+         * 使用快慢指针的方式
+         */
+        public void merge(int[] A, int m, int[] B, int n) {
+            int p = A.length - 1;
+            m--;
+            n--;
+            while (m >= 0 && n >= 0) {
+                if (A[m] > B[n]) {
+                    A[p] = A[m--];
+                } else {
+                    A[p] = B[n--];
+                }
+                p--;
+            }
+            // 如果 m > 0 则 A 中剩余的数都比B小
+            while (n >= 0) { // A 中的有效数都已向后移动
+                A[p--] = B[n--];
+            }
         }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+}
