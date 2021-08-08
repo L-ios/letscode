@@ -62,7 +62,12 @@ public class QLongestSubstringWithoutRepeatingCharacters {
         assert solution.lengthOfLongestSubstring("") == 0;
         assert solution.lengthOfLongestSubstring(" ") == 1;
         assert solution.lengthOfLongestSubstring("dvdf") == 3;
+        assert solution.lengthOfLongestSubstring("pwwkes") == 3;
         assert solution.lengthOfLongestSubstring("abcabcbb") == 3;
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        return new Solution().lengthOfLongestSubstring(s);
     }
 private static
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -79,7 +84,7 @@ class Solution {
         int maxSub = 0;
         // 判断要走到那一个字符串
         char dup = 0;
-        while (fast < s.length()) {
+        while (fast < s.length() && slow < s.length()) {
             if (dup != 0) {
                 if (s.charAt(slow)== dup) {
                     dup = 0;
@@ -90,14 +95,13 @@ class Solution {
                 if (pathed.contains(s.charAt(fast))) {
                     dup = s.charAt(fast);
                     maxSub = Math.max(maxSub, pathed.size());
-                    fast--;
                 } else {
                     pathed.add(s.charAt(fast));
                     fast++;
                 }
             }
         }
-        return Math.max(maxSub, fast-slow);
+        return Math.max(maxSub, pathed.size());
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
